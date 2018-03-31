@@ -4,7 +4,7 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
 
-    class CreateUsersTable extends Migration
+    class CreateNationsTable extends Migration
     {
         /**
          * Run the migrations.
@@ -13,12 +13,13 @@
          */
         public function up()
         {
-            Schema::create('users', function (Blueprint $table) {
+            Schema::create('nations', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('login')->unique();
-                $table->string('email');
-                $table->string('password');
-                $table->rememberToken();
+                $table->string('name');         // Название нации
+                $table->string('description');  // Описание нации
+                $table->integer('country_id');  // id Страны
+                $table->integer('country_name');  // id Страны
+
                 $table->timestamps();
             });
         }
@@ -30,6 +31,6 @@
          */
         public function down()
         {
-            Schema::dropIfExists('users');
+            Schema::dropIfExists('nations');
         }
     }

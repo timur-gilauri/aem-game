@@ -4,7 +4,7 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
 
-    class CreateUsersTable extends Migration
+    class CreateBagsTable extends Migration
     {
         /**
          * Run the migrations.
@@ -13,12 +13,13 @@
          */
         public function up()
         {
-            Schema::create('users', function (Blueprint $table) {
+            Schema::create('bags', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('login')->unique();
-                $table->string('email');
-                $table->string('password');
-                $table->rememberToken();
+                $table->integer('user_id');
+
+                /* Размер сумки. Ограничивает количество предметов. Ограничения см. в модели */
+                $table->string('size');
+
                 $table->timestamps();
             });
         }
@@ -30,6 +31,6 @@
          */
         public function down()
         {
-            Schema::dropIfExists('users');
+            Schema::dropIfExists('bags');
         }
     }
