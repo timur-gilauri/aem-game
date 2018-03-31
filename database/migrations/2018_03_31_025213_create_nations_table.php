@@ -1,10 +1,10 @@
 <?php
 
-    use Illuminate\Database\Migrations\Migration;
-    use Illuminate\Database\Schema\Blueprint;
-    use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-    class CreateNationsTable extends Migration
+class CreateNationsTable extends Migration
     {
         /**
          * Run the migrations.
@@ -15,10 +15,8 @@
         {
             Schema::create('nations', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name');         // Название нации
-                $table->string('description');  // Описание нации
-                $table->integer('country_id');  // id Страны
-                $table->integer('country_name');  // id Страны
+                $table->string('name');             // Название нации
+                $table->string('description');      // Описание нации
 
                 $table->timestamps();
             });

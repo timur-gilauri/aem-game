@@ -1,10 +1,10 @@
 <?php
 
-    use Illuminate\Database\Migrations\Migration;
-    use Illuminate\Database\Schema\Blueprint;
-    use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-    class CreateLocationsTable extends Migration
+class CreateLocationsTable extends Migration
     {
         /**
          * Run the migrations.
@@ -15,7 +15,6 @@
         {
             Schema::create('locations', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('city_id');
                 $table->integer('parent_location_id');
                 $table->string('title');
                 $table->string('title_displayed');
