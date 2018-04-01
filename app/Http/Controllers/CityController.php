@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class CityController extends Controller
-    {
-        //
-    }
+class CityController extends Controller
+{
+    //
+}

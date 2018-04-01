@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class NationController extends Controller
-    {
-        //
-    }
+class NationController extends Controller
+{
+    //
+}

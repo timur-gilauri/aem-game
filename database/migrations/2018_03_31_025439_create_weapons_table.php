@@ -26,10 +26,10 @@ class CreateWeaponsTable extends Migration
             $table->string('weapon_category_id');            // Категория оружия: мечи, топоры, луки, кинжалы и т.д
 
             /* изображение */
-            $table->string('image_file_name');
-            $table->integer('image_file_size');
-            $table->string('image_content_type');
-            $table->timestamp('image_updated_at');
+            $table->string('image_file_name')->nullable();
+            $table->integer('image_file_size')->nullable();
+            $table->string('image_content_type')->nullable();
+            $table->timestamp('image_updated_at')->nullable();
 
             $table->timestamps();
         });

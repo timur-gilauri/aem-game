@@ -15,8 +15,8 @@ class CreateBagElixirTable extends Migration
     {
         Schema::create('bag_elixir', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('bag_id');
-            $table->increments('elixir_id');
+            $table->integer('bag_id');
+            $table->integer('elixir_id');
             $table->timestamps();
         });
     }

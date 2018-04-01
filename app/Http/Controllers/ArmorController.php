@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class ArmorController extends Controller
-    {
-        //
-    }
+class ArmorController extends Controller
+{
+    //
+}

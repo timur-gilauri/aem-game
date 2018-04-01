@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class PlayerController extends Controller
-    {
-        //
-    }
+class PlayerController extends Controller
+{
+    //
+}

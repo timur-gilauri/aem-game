@@ -15,8 +15,8 @@ class CreateBagAccessoryTable extends Migration
     {
         Schema::create('bag_accessory', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('bag_id');
-            $table->increments('accessory_id');
+            $table->integer('bag_id');
+            $table->integer('accessory_id');
             $table->timestamps();
         });
     }

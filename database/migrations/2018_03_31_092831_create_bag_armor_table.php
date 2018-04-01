@@ -15,8 +15,8 @@ class CreateBagArmorTable extends Migration
     {
         Schema::create('bag_armor', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('bag_id');
-            $table->increments('armor_id');
+            $table->integer('bag_id');
+            $table->integer('armor_id');
             $table->timestamps();
         });
     }

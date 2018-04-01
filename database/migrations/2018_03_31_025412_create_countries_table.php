@@ -19,10 +19,10 @@ class CreateCountriesTable extends Migration
             $table->string('description');  // Описание страны
 
             /* изображение */
-            $table->string('image_file_name');
-            $table->integer('image_file_size');
-            $table->string('image_content_type');
-            $table->timestamp('image_updated_at');
+            $table->string('arms_file_name')->nullable();
+            $table->integer('arms_file_size')->nullable();
+            $table->string('arms_content_type')->nullable();
+            $table->timestamp('arms_updated_at')->nullable();
 
             $table->timestamps();
         });

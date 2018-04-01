@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class BagController extends Controller
-    {
-        //
-    }
+class BagController extends Controller
+{
+    //
+}

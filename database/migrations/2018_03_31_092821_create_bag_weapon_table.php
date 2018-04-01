@@ -15,8 +15,8 @@ class CreateBagWeaponTable extends Migration
     {
         Schema::create('bag_weapon', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('bag_id');
-            $table->increments('weapon_id');
+            $table->integer('bag_id');
+            $table->integer('weapon_id');
             $table->timestamps();
         });
     }

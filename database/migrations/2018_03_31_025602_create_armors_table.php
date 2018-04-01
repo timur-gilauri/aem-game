@@ -23,10 +23,10 @@ class CreateArmorsTable extends Migration
             $table->integer('defense');   // Урон оружия
             $table->integer('endurance'); // Запас прочности
             /* изображение */
-            $table->string('image_file_name');
-            $table->integer('image_file_size');
-            $table->string('image_content_type');
-            $table->timestamp('image_updated_at');
+            $table->string('image_file_name')->nullable();
+            $table->integer('image_file_size')->nullable();
+            $table->string('image_content_type')->nullable();
+            $table->timestamp('image_updated_at')->nullable();
 
             $table->timestamps();
         });

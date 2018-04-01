@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class AccessoryController extends Controller
-    {
-        //
-    }
+class AccessoryController extends Controller
+{
+    //
+}

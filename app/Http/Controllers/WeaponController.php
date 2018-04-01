@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class WeaponController extends Controller
-    {
-        //
-    }
+class WeaponController extends Controller
+{
+    //
+}

@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class LocationController extends Controller
-    {
-        //
-    }
+class LocationController extends Controller
+{
+    //
+}

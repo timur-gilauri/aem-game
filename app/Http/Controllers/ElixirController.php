@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    class ElixirController extends Controller
-    {
-        //
-    }
+class ElixirController extends Controller
+{
+    //
+}
