@@ -4,12 +4,18 @@
 @import "variables";
 // fonts
 @import "fonts";
+//bootstrap
+@import '~bootstrap/scss/bootstrap';
 // base
 @import "base";
 // media
 @import "media";
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// create player page
+@import "create-player";
+// player page
+@import "player";
+// admin
+@import "admin";
 
 .navbar-laravel {
   background-color: #fff;

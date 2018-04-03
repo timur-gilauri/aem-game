@@ -1,0 +1,42 @@
+$create-player: '.create-player';
+$image-size: 100px;
+
+#{$create-player} {
+  &__label {
+    display: block;
+    input {
+      display: none;
+    }
+  }
+  &__img {
+    display: block;
+    margin: auto;
+    width: $image-size;
+    height: $image-size;
+    max-width: $image-size;
+    max-height: $image-size;
+    border: 2px solid #bbb;
+    -webkit-border-radius: $border-radius;
+    -moz-border-radius: $border-radius;
+    border-radius: $border-radius;
+  }
+  &__checkbox {
+    &:checked {
+      ~ #{$create-player} {
+        &__img {
+          border-color: #bbb;
+          box-shadow: 0 2px 3px #999, 2px 0 3px #999, 0 -2px 3px #999, -2px 0 3px #999;
+        }
+      }
+    }
+  }
+  &__name-block {
+    display: flex;
+    flex-direction: row;
+    &__img {
+      height: 150px;
+      width: auto;
+      margin-right: 20px;
+    }
+  }
+}

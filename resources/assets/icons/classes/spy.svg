@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 512px; width: 512px;">
+    <defs>
+        <filter id="shadow-2" height="300%" width="300%" x="-100%" y="-100%">
+            <feFlood flood-color="rgba(120, 120, 120, 1)" result="flood"></feFlood>
+            <feComposite in="flood" in2="SourceGraphic" operator="atop" result="composite"></feComposite>
+            <feGaussianBlur in="composite" stdDeviation="5" result="blur"></feGaussianBlur>
+            <feOffset dx="0" dy="5" result="offset"></feOffset>
+            <feComposite in="SourceGraphic" in2="offset" operator="over"></feComposite>
+        </filter>
+        <filter id="shadow-3" height="300%" width="300%" x="-100%" y="-100%">
+            <feFlood flood-color="rgba(120, 120, 120, 1)" result="flood"></feFlood>
+            <feComposite in="flood" in2="SourceGraphic" operator="atop" result="composite"></feComposite>
+            <feGaussianBlur in="composite" stdDeviation="5" result="blur"></feGaussianBlur>
+            <feOffset dx="0" dy="5" result="offset"></feOffset>
+            <feComposite in="SourceGraphic" in2="offset" operator="over"></feComposite>
+        </filter>
+        <filter id="shadow-4" height="300%" width="300%" x="-100%" y="-100%">
+            <feFlood flood-color="rgba(183, 0, 0, 1)" result="flood"></feFlood>
+            <feComposite in="flood" in2="SourceGraphic" operator="atop" result="composite"></feComposite>
+            <feGaussianBlur in="composite" stdDeviation="7" result="blur"></feGaussianBlur>
+            <feOffset dx="0" dy="3" result="offset"></feOffset>
+            <feComposite in="SourceGraphic" in2="offset" operator="over"></feComposite>
+        </filter>
+        <filter id="shadow-5" height="300%" width="300%" x="-100%" y="-100%">
+            <feFlood flood-color="rgba(183, 0, 0, 1)" result="flood"></feFlood>
+            <feComposite in="flood" in2="SourceGraphic" operator="atop" result="composite"></feComposite>
+            <feGaussianBlur in="composite" stdDeviation="7" result="blur"></feGaussianBlur>
+            <feOffset dx="0" dy="3" result="offset"></feOffset>
+            <feComposite in="SourceGraphic" in2="offset" operator="over"></feComposite>
+        </filter>
+        <filter id="shadow-6" height="300%" width="300%" x="-100%" y="-100%">
+            <feFlood flood-color="rgba(183, 0, 0, 1)" result="flood"></feFlood>
+            <feComposite in="flood" in2="SourceGraphic" operator="atop" result="composite"></feComposite>
+            <feGaussianBlur in="composite" stdDeviation="7" result="blur"></feGaussianBlur>
+            <feOffset dx="0" dy="3" result="offset"></feOffset>
+            <feComposite in="SourceGraphic" in2="offset" operator="over"></feComposite>
+        </filter>
+    </defs>
+    <path d="M0 0h512v512H0z" fill="transparent" fill-opacity="0"></path>
+    <g class="" transform="translate(5,1)" style="touch-action: none;">
+        <g>
+            <path d="M17.406 17.156L17.406 54.97C96.951 89.307 196.33 128.72 279.312 152.313C225.525 98.153 154.142 48.62 100.094 17.156L17.406 17.156Z"
+                  class="" fill="#787878" fill-opacity="1" filter="url(#shadow-2)"></path>
+            <path d="M136.219 17.156C195.259 54.111 265.894 106.676 315.437 163.656L334.717 185.876L306.155 178.876C218.233 157.345 106.5 113.523 17.406 75.28L17.406 116.75C185.604 190.39 362.659 245.305 493.75 268.25C455.993 227.122 417.573 190.09 379.5 156.75C314.105 99.484 250 53.816 192.03 17.156L136.22 17.156Z"
+                  class="selected" fill="#787878" fill-opacity="1" filter="url(#shadow-3)"></path>
+            <path d="M42.843 148C60.773 181.19 72.59 251.934 62.968 287.938C59.982 299.104 43.904 328.464 43.904 341.75C43.904 359.76 58.372 374.414 76.374 373.97C94.374 373.524 108.809 357.82 108.81 339.812C108.81 326.446 92.118 298.082 89.06 287.032C78.394 248.472 95.774 194.878 120.686 179.25C94.746 169.31 68.739 158.9 42.842 148Z"
+                  class="" fill="#b70000" fill-opacity="1" filter="url(#shadow-4)"></path>
+            <path d="M212.155 212.375C255.293 260.53 263.272 367.045 251.53 409.875C248.288 421.71 231 453.25 231 467.438C231 486.554 245.893 501.308 265 501.156C284.107 501.006 299.688 485.992 299.688 466.876C299.688 452.773 283.796 421.161 279.875 409.656C265.122 366.356 275.907 265.871 301.125 268.469C323.145 270.733 326.457 317.593 317.405 348.405C315.322 355.498 305.377 373.985 305.375 382.53C305.375 394.047 314.395 402.998 325.905 402.906C337.417 402.813 346.435 393.703 346.438 382.186C346.438 373.692 337.488 355.211 335.125 348.281C326.97 324.344 338.345 273.375 356.031 256.314C310.075 243.982 261.671 229.238 212.157 212.376Z"
+                  class="" fill="#b70000" fill-opacity="1" filter="url(#shadow-5)"></path>
+            <path d="M385.155 263.905C403.632 289.485 409.888 342.348 397.935 387.063C394.225 400.943 374.251 437.421 374.249 453.938C374.249 476.325 392.246 494.551 414.624 494C437.002 493.45 454.968 473.95 454.968 451.562C454.968 434.946 434.204 399.675 430.404 385.937C417.106 337.863 437.696 296.261 466.31 282.157C440.58 277.124 413.407 271.01 385.154 263.907Z"
+                  class="" fill="#b70000" fill-opacity="1" filter="url(#shadow-6)"></path>
+        </g>
+    </g>
+</svg>

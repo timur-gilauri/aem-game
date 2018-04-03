@@ -1,0 +1,23 @@
+.player-stats {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 15px;
+  &__img {
+    height: 100%;
+    width: auto;
+    max-height: 150px;
+    margin-right: 20px;
+  }
+}
+
+.stat-line {
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+  .stat-line__name {
+
+  }
+  .stat-line__value {
+    font-weight: 600;
+  }
+}

@@ -17,7 +17,7 @@ class CreatePlayerClassesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->string('class_action');             // Действие класса
+            $table->string('class_action');             // Действие класса. Может быть
             $table->string('scale');                    // Единицы измерения прибавки.
 
             /* Базовые характеристики */

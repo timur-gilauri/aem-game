@@ -42,12 +42,12 @@ class CreatePlayersTable extends Migration
             $table->integer('heavy_armor');                     // Тяжелая броня
             $table->integer('light_armor');                     // Легкая броня
             /* Активные вещи */
-            $table->integer('active_weapon_id');                // id активного оружия
-            $table->integer('active_armor_id');                 // id активной брони
-            $table->integer('left_hand_accessory_id');          // id кольца на левой руке
-            $table->integer('right_hand_accessory_id');         // id кольца на правой руке
-            $table->integer('neck_accessory_id');               // id аксесуара на шее
-            $table->integer('active_elixir_id');                // id использованного эликсира. Например, перед боем
+            $table->integer('active_weapon_id')->nullable();                // id активного оружия
+            $table->integer('active_armor_id')->nullable();                 // id активной брони
+            $table->integer('left_hand_accessory_id')->nullable();          // id кольца на левой руке
+            $table->integer('right_hand_accessory_id')->nullable();         // id кольца на правой руке
+            $table->integer('neck_accessory_id')->nullable();               // id аксесуара на шее
+            $table->integer('active_elixir_id')->nullable();                // id использованного эликсира. Например, перед боем
             /* Дополнительные параметры */
             $table->string('restoring');                        // Индикатор того, что игрок в процессе восстановления здоровья
 
