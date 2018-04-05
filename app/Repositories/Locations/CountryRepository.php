@@ -9,6 +9,7 @@
 namespace App\Repositories\Locations;
 
 
+use App\Classes\Helpers\UrlHelper;
 use App\Entities\Locations\CountryEntity;
 use App\Models\Locations\City;
 use App\Models\Locations\Country;
@@ -47,9 +48,16 @@ class CountryRepository
      */
     public function find(int $id)
     {
-        $model = Country::find($id);
+        return ($model = Country::find($id)) ? $this->toEntity($model) : null;
+    }
 
-        return $model ? $this->toEntity($model) : null;
+    /**
+     * @param string $slug
+     * @return CountryEntity|null
+     */
+    public function findBySlug(string $slug)
+    {
+        return ($model = Country::where('slug', $slug)->first()) ? $this->toEntity($model) : null;
     }
 
     /**
@@ -61,8 +69,8 @@ class CountryRepository
         $entity = new CountryEntity();
 
         $entity->setId($model->id);
-        $entity->setName($model->name);
         $entity->setTitle($model->title);
+        $entity->setSlug($model->slug);
         $entity->setDescription($model->description);
         $entity->setArms($model->arms);
         $entity->setArmsShadow($model->arms_shadow);
@@ -84,8 +92,12 @@ class CountryRepository
     {
         $model = $entity->getId() ? Country::find($entity->getId()) : new Country();
 
-        $model->name = $entity->getName();
         $model->title = $entity->getTitle();
+
+        if ($entity->getId() && ($entity->getSlug() != $model->slug)) {
+            $model->slug = UrlHelper::transformTitleToUrl($entity->getTitle());
+        }
+
         $model->description = $entity->getDescription();
         if (!($entity->getArms() instanceof Attachment) && !is_null($entity->getArms())) {
             $model->arms = $entity->getArms();

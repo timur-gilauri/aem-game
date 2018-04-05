@@ -15,14 +15,20 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
+            $table->string('slug');
             $table->string('description');  // Описание страны
 
             /* изображение */
-            $table->string('arms_file_name')->nullable();
-            $table->integer('arms_file_size')->nullable();
-            $table->string('arms_content_type')->nullable();
-            $table->timestamp('arms_updated_at')->nullable();
+            $table->string('image_file_name')->nullable();
+            $table->integer('image_file_size')->nullable();
+            $table->string('image_content_type')->nullable();
+            $table->timestamp('image_updated_at')->nullable();
+
+            $table->string('image_shadowed_file_name')->nullable();
+            $table->integer('image_shadowed_file_size')->nullable();
+            $table->string('image_shadowed_content_type')->nullable();
+            $table->timestamp('image_shadowed_updated_at')->nullable();
 
             $table->timestamps();
         });

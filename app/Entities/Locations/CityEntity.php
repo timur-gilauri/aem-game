@@ -10,6 +10,7 @@ namespace App\Entities\Locations;
 
 
 use Codesleeve\Stapler\Attachment;
+use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CityEntity
@@ -17,7 +18,9 @@ class CityEntity
     /** @var int */
     protected $id;
     /** @var string */
-    protected $name;
+    protected $title;
+    /** @var string */
+    protected $slug;
     /** @var string */
     protected $description;
     /** @var int */
@@ -26,6 +29,8 @@ class CityEntity
     protected $image;
     /** @var int */
     protected $playersAmount;
+    /** @var Collection */
+    protected $locations;
 
     /**
      * @return int
@@ -46,17 +51,33 @@ class CityEntity
     /**
      * @return string
      */
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param string $name
+     * @param string $title
      */
-    public function setName(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
     }
 
     /**
@@ -121,6 +142,30 @@ class CityEntity
     public function setPlayersAmount(int $playersAmount): void
     {
         $this->playersAmount = $playersAmount;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getLocations(): Collection
+    {
+        return $this->locations;
+    }
+
+    /**
+     * @param Collection $locations
+     */
+    public function setLocations(Collection $locations): void
+    {
+        $this->locations = $locations;
+    }
+
+
+    public function getFirstLevelLocations()
+    {
+        return $this->getLocations()->filter(function (LocationEntity $location) {
+            return !((bool)$location->getParentLocationId());
+        });
     }
 
 }

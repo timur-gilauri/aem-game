@@ -1,12 +1,19 @@
 .player-stats {
   display: flex;
   flex-direction: row;
-  padding: 10px 15px;
   &__img {
     height: 100%;
     width: auto;
     max-height: 150px;
     margin-right: 20px;
+  }
+  &__tabs {
+    .nav-item {
+      .nav-link {
+        padding: 0.25rem .5rem;
+        font-size: 12px;
+      }
+    }
   }
 }
 

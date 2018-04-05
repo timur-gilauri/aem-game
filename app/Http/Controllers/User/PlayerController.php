@@ -43,6 +43,11 @@ class PlayerController extends Controller
 
     public function create()
     {
+        $user = Auth::user();
+
+        if ($user->has('player')) {
+            return redirect(route('player::player'), 301);
+        }
         /** @var Collection $countries */
         $countries = $this->countryRepo->all();
         /** @var Collection $playerClasses */

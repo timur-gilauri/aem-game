@@ -15,10 +15,10 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');         // Название города
+            $table->string('title');         // Название города
+            $table->string('slug');
             $table->string('description');  // Описание города
             $table->integer('country_id');  // id страны, на территории которой находится этот город
-            $table->string('country_name'); // Название страны, на территории которой находится этот город
 
             /* изображение */
             $table->string('image_file_name')->nullable();

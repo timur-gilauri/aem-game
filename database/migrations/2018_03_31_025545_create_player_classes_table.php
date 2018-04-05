@@ -15,9 +15,9 @@ class CreatePlayerClassesTable extends Migration
     {
         Schema::create('player_classes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
-            $table->string('class_action');             // Действие класса. Может быть
+            $table->string('class_action');             // Действие класса. Может быть permanent, at_level
             $table->string('scale');                    // Единицы измерения прибавки.
 
             /* Базовые характеристики */
@@ -34,6 +34,11 @@ class CreatePlayerClassesTable extends Migration
             /* Навыки владения броней */
             $table->integer('heavy_armor_up');        // Тяжелая броня
             $table->integer('light_armor_up');        // Легкая броня
+
+            $table->string('image_file_name')->nullable();
+            $table->integer('image_file_size')->nullable();
+            $table->string('image_content_type')->nullable();
+            $table->timestamp('image_updated_at')->nullable();
 
             $table->timestamps();
         });

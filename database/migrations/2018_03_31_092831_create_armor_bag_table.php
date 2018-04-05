@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateCountriesTableAddTitle extends Migration
+class CreateArmorBagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class UpdateCountriesTableAddTitle extends Migration
      */
     public function up()
     {
-        Schema::table('countries', function (Blueprint $table) {
-            $table->string('title')->after('name');
+        Schema::create('armor_bag', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('bag_id');
+            $table->integer('armor_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class UpdateCountriesTableAddTitle extends Migration
      */
     public function down()
     {
-        Schema::table('countries', function (Blueprint $table) {
-            $table->dropColumn('title');
-        });
+        Schema::dropIfExists('armor_bag');
     }
 }

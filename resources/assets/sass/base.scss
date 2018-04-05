@@ -1,5 +1,5 @@
 body {
-  height: 100vh;
+  min-height: 100vh;
   color: #222;
   font-family: 'Pangolin', cursive;
   * {
@@ -43,6 +43,10 @@ a:active {
   color: $base-font-color;
 }
 
+.base-block-padding {
+  padding: 10px 15px;
+}
+
 .button {
   //display: block;
   max-width: 100%;
@@ -83,6 +87,7 @@ a:active {
 .app {
   max-width: 480px;
   height: 100%;
+  min-height: 100vh;
   margin: auto;
   background-color: #e6e2d0;
 }
@@ -104,7 +109,7 @@ a:active {
   letter-spacing: $line-letter-spacing;
   line-height: 2;
   text-decoration: none;
-  transition: box-shadow linear 3s;
+  transition: box-shadow linear .2s;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

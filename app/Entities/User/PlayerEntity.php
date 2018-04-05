@@ -11,7 +11,6 @@ namespace App\Entities\User;
 
 use App\Entities\Locations\CityEntity;
 use App\Entities\Locations\CountryEntity;
-use App\Entities\Locations\NationEntity;
 use Codesleeve\Stapler\Attachment;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

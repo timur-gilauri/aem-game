@@ -2,10 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Entities\User\PlayerEntity;
+use App\Repositories\Locations\CityRepository;
+use App\Repositories\Locations\LocationRepository;
+use App\Repositories\User\PlayerRepository;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    /** @var Auth */
+    protected $user;
+    /** @var PlayerEntity */
+    protected $player;
+    /** @var LocationRepository */
+    protected $locationRepo;
+    /** @var PlayerRepository */
+    protected $playerRepo;
+    /** @var CityRepository */
+    protected $cityRepo;
+
     /**
      * Create a new controller instance.
      *
@@ -14,6 +29,13 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->cityRepo = app(CityRepository::class);
+
+        $this->playerRepo = app(PlayerRepository::class);
+
+        $this->locationRepo = app(LocationRepository::class);
+
     }
 
     /**
@@ -23,11 +45,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
+        $this->user = Auth::user();
+        $this->player = $this->playerRepo->findByUserId($this->user->id);
 
-    public function createPlayer(Request $request)
-    {
-        return view('player.create');
+        $city = $this->cityRepo->find($this->player->getCityId());
+
+        $locations = $city->getFirstLevelLocations();
+
+        return view('home', [
+            'locations' => $locations,
+            'player'    => $this->player,
+        ]);
     }
 }

@@ -28,4 +28,12 @@ class City extends Model implements StaplerableInterface
         return $this->hasMany(Player::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
+    }
+
 }

@@ -16,16 +16,7 @@
 <body>
 <div id="app" class="app">
 
-    <header>
-        @include('blocks.header')
-        <div class="header-image"></div>
-    </header>
-
-    <section>
-        @yield('content')
-    </section>
-
-    @include('blocks.footer')
+    @yield('content')
 
 </div>
 <!-- Scripts -->

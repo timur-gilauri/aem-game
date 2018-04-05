@@ -16,6 +16,7 @@ class CreatePlayersTable extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->string('name');
 
             /* Характеристики персонажа */
             $table->integer('nation_id');                       // id Расы, которую выбрал пользователь
@@ -49,7 +50,7 @@ class CreatePlayersTable extends Migration
             $table->integer('neck_accessory_id')->nullable();               // id аксесуара на шее
             $table->integer('active_elixir_id')->nullable();                // id использованного эликсира. Например, перед боем
             /* Дополнительные параметры */
-            $table->string('restoring');                        // Индикатор того, что игрок в процессе восстановления здоровья
+            $table->string('restoring')->default(0);                        // Индикатор того, что игрок в процессе восстановления здоровья
 
             /* изображение */
             $table->string('image_file_name')->nullable();

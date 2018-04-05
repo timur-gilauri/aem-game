@@ -15,7 +15,7 @@ class CreateAccessoriesTable extends Migration
     {
         Schema::create('accessories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
             $table->string('type');                 // Тип аксессуара: кольцо, ожерелье и т.д.
 

@@ -15,10 +15,10 @@ class CreateElixirsTable extends Migration
     {
         Schema::create('elixirs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
 
-            $table->integer('action_type');                     // Действие. Может быть up(уменьшает параметр), down(увеличивает)
+            $table->string('action_type');                     // Действие. Может быть up(уменьшает параметр), down(увеличивает)
             $table->integer('price');                           // Цена
 
             $table->integer('value');                           // Сила эликсира - в абсолютных единицах

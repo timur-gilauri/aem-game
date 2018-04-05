@@ -9,6 +9,7 @@
 namespace App\Entities\Locations;
 
 
+use App\Entities\User\NationEntity;
 use Codesleeve\Stapler\Attachment;
 use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -18,9 +19,9 @@ class CountryEntity
     /** @var int|null */
     protected $id;
     /** @var string */
-    protected $name;
-    /** @var string */
     protected $title;
+    /** @var string */
+    protected $slug;
     /** @var string */
     protected $description;
     /** @var null|Attachment|UploadedFile */
@@ -51,22 +52,6 @@ class CountryEntity
     /**
      * @return string
      */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
@@ -79,6 +64,23 @@ class CountryEntity
     {
         $this->title = $title;
     }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
+    }
+
 
     /**
      * @return string

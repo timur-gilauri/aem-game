@@ -6,7 +6,7 @@
  * Time: 1:00
  */
 
-namespace App\Entities\Locations;
+namespace App\Entities\User;
 
 
 class NationEntity

@@ -10,15 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('locations/{slug}', 'LocationController@goToLocation')->name('location');
 
 /*===== ПРОИЗВОДИТЕЛИ ======*/
 Route::group([
@@ -26,6 +23,7 @@ Route::group([
     'as'     => 'player::',
 ], function () {
     Route::get('/', 'PlayerController@index')->name('player');
+    Route::get('/bag', 'PlayerController@bag')->name('bag');
     Route::get('/create', "PlayerController@create")->name('create');
     Route::post('/save', "PlayerController@save")->name('save');
     Route::post('/delete/{id}', "PlayerController@delete")->name('delete');

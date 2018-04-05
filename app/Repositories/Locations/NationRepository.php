@@ -9,7 +9,7 @@
 namespace App\Repositories\Locations;
 
 
-use App\Entities\Locations\NationEntity;
+use App\Entities\User\NationEntity;
 use App\Models\User\Nation;
 use Illuminate\Support\Collection;
 
@@ -25,10 +25,7 @@ class NationRepository
         });
     }
 
-    /**
-     * @param Nation $model
-     * @return NationEntity
-     */
+
     public function toEntity(Nation $model): NationEntity
     {
         $entity = new NationEntity();
