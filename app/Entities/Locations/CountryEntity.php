@@ -25,9 +25,9 @@ class CountryEntity
     /** @var string */
     protected $description;
     /** @var null|Attachment|UploadedFile */
-    protected $arms;
+    protected $image;
     /** @var null|Attachment|UploadedFile */
-    protected $arms_shadow;
+    protected $image_shadowed;
     /** @var NationEntity */
     protected $nation;
     /** @var Collection */
@@ -101,34 +101,35 @@ class CountryEntity
     /**
      * @return Attachment|null|UploadedFile
      */
-    public function getArms()
+    public function getImage()
     {
-        return $this->arms;
+        return $this->image;
     }
 
     /**
-     * @param Attachment|null|UploadedFile $arms
+     * @param Attachment|null|UploadedFile $image
      */
-    public function setArms($arms): void
+    public function setImage($image): void
     {
-        $this->arms = $arms;
+        $this->image = $image;
     }
 
     /**
      * @return Attachment|null|UploadedFile
      */
-    public function getArmsShadow()
+    public function getImageShadowed()
     {
-        return $this->arms_shadow;
+        return $this->image_shadowed;
     }
 
     /**
-     * @param Attachment|null|UploadedFile $arms_shadow
+     * @param Attachment|null|UploadedFile $image_shadowed
      */
-    public function setArmsShadow($arms_shadow): void
+    public function setImageShadowed($image_shadowed): void
     {
-        $this->arms_shadow = $arms_shadow;
+        $this->image_shadowed = $image_shadowed;
     }
+
 
     /**
      * @return NationEntity

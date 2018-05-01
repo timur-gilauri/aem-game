@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: timur
  * Date: 05.04.2018
- * Time: 16:38
+ * Time: 21:58
  */
 
 namespace App\Entities\Stuff;
@@ -12,7 +12,7 @@ namespace App\Entities\Stuff;
 use Codesleeve\Stapler\Attachment;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ElixirEntity
+class ArmorEntity
 {
     /** @var int|null */
     protected $id;
@@ -20,18 +20,18 @@ class ElixirEntity
     protected $title;
     /** @var string */
     protected $description;
-    /** @var string */
-    protected $action_direction;
-    /** @var int */
-    protected $value;
-    /** @var string */
-    protected $scale;
-    /** @var string */
-    protected $target_param;
     /** @var int */
     protected $price;
+    /** @var int */
+    protected $value;
+    /** @var int */
+    protected $endurance;
+    /** @var int */
+    protected $category_id;
     /** @var Attachment|UploadedFile|null */
     protected $image;
+    /** @var string */
+    protected $category;
 
     /**
      * @return int|null
@@ -82,20 +82,21 @@ class ElixirEntity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getActionDirection(): string
+    public function getPrice(): int
     {
-        return $this->action_direction;
+        return $this->price;
     }
 
     /**
-     * @param string $action_direction
+     * @param int $price
      */
-    public function setActionDirection(string $action_direction): void
+    public function setPrice(int $price): void
     {
-        $this->action_direction = $action_direction;
+        $this->price = $price;
     }
+
 
     /**
      * @return int
@@ -114,51 +115,35 @@ class ElixirEntity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getScale(): string
+    public function getEndurance(): int
     {
-        return $this->scale;
+        return $this->endurance;
     }
 
     /**
-     * @param string $scale
+     * @param int $endurance
      */
-    public function setScale(string $scale): void
+    public function setEndurance(int $endurance): void
     {
-        $this->scale = $scale;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTargetParam(): string
-    {
-        return $this->target_param;
-    }
-
-    /**
-     * @param string $target_param
-     */
-    public function setTargetParam(string $target_param): void
-    {
-        $this->target_param = $target_param;
+        $this->endurance = $endurance;
     }
 
     /**
      * @return int
      */
-    public function getPrice(): int
+    public function getCategoryId(): int
     {
-        return $this->price;
+        return $this->category_id;
     }
 
     /**
-     * @param int $price
+     * @param int $category_id
      */
-    public function setPrice(int $price): void
+    public function setCategoryId(int $category_id): void
     {
-        $this->price = $price;
+        $this->category_id = $category_id;
     }
 
     /**
@@ -175,6 +160,22 @@ class ElixirEntity
     public function setImage($image): void
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory(string $category): void
+    {
+        $this->category = $category;
     }
 
 }

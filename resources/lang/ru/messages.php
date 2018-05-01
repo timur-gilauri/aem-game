@@ -1,5 +1,8 @@
 <?php
 
 return [
-    'password' => 'Пароль'
+    'password' => 'Пароль',
+    'armor'    => 'Броня',
+    'elixir'   => 'Эликсир',
+    'weapon'   => 'Оружие',
 ];

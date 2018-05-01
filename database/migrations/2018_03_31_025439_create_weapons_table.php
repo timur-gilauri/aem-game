@@ -18,12 +18,11 @@ class CreateWeaponsTable extends Migration
             $table->string('title');
             $table->string('description');
 
-            $table->integer('damage');                        // Урон оружия
-            $table->integer('endurance');                    // Запас прочности
-            $table->string('power_level');                    // Группа оружия: слабое. среднее, мощное и т.д.
-
-            $table->string('type_id');                        // Тип оружия. железное, стальное и т.д.
-            $table->string('weapon_category_id');            // Категория оружия: мечи, топоры, луки, кинжалы и т.д
+            $table->integer('price');                   // Цена
+            $table->integer('value');                       // Урон оружия
+            $table->integer('endurance');                   // Запас прочности
+            $table->string('category_id');                  // Категория оружия: слабое. среднее, мощное и т.д.
+            $table->string('type');                         // Тип оружия: мечи, топоры, луки, кинжалы и т.д
 
             /* изображение */
             $table->string('image_file_name')->nullable();

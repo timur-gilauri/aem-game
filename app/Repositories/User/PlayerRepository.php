@@ -19,6 +19,8 @@ use Illuminate\Support\Collection;
 
 class PlayerRepository
 {
+    /** @var BagRepository */
+    protected $bagRepo;
     /** @var CityRepository */
     protected $cityRepo;
     /** @var NationRepository */
@@ -30,6 +32,7 @@ class PlayerRepository
 
     public function __construct()
     {
+        $this->bagRepo = app(BagRepository::class);
         $this->cityRepo = app(CityRepository::class);
         $this->nationRepo = app(NationRepository::class);
         $this->countryRepo = app(CountryRepository::class);
@@ -110,6 +113,7 @@ class PlayerRepository
         $entity->setCity($this->cityRepo->toEntity($model->city));
         $entity->setCountry($this->countryRepo->toEntity($model->country));
         $entity->setNation($this->nationRepo->toEntity($model->nation));
+        $entity->setBag($this->bagRepo->toEntity($model->bag));
 
         return $entity;
     }

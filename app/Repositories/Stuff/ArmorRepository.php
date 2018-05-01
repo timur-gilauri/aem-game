@@ -3,76 +3,69 @@
  * Created by PhpStorm.
  * User: timur
  * Date: 05.04.2018
- * Time: 16:38
+ * Time: 23:18
  */
 
 namespace App\Repositories\Stuff;
 
 
-use App\Entities\Stuff\ElixirEntity;
-use App\Models\Stuff\Elixir;
+use App\Entities\Stuff\ArmorEntity;
+use App\Models\Stuff\Armor;
 use Codesleeve\Stapler\Attachment;
 use Illuminate\Support\Collection;
 
-class ElixirRepository
+class ArmorRepository
 {
-
     /**
      * @return Collection
      */
     public function all(): Collection
     {
-        return Elixir::all()->map(function (Elixir $model) {
+        return Armor::all()->map(function (Armor $model) {
             return $this->toEntity($model);
         });
     }
 
     /**
      * @param int $id
-     * @return ElixirEntity|null
+     * @return ArmorEntity|null
      */
     public function find(int $id)
     {
-        return ($model = Elixir::find($id)) ? $this->toEntity($model) : null;
+        return ($model = Armor::find($id)) ? $this->toEntity($model) : null;
     }
 
     /**
-     * @param Elixir $model
-     * @return ElixirEntity
+     * @param Armor $model
+     * @return ArmorEntity
      */
-    public function toEntity(Elixir $model): ElixirEntity
+    public function toEntity(Armor $model): ArmorEntity
     {
-        $entity = new ElixirEntity();
+        $entity = new ArmorEntity();
 
         $entity->setId($model->id);
         $entity->setTitle($model->title);
         $entity->setDescription($model->description);
-        $entity->setActionDirection($model->action_direction);
         $entity->setPrice($model->price);
         $entity->setValue($model->value);
-        $entity->setScale($model->scale);
-        $entity->setTargetParam($model->target_param);
+        $entity->setEndurance($model->endurance);
+        $entity->setCategoryId($model->category_id);
         $entity->setImage($model->image);
+        $entity->setCategory($model->category->level);
 
         return $entity;
     }
 
-    /**
-     * @param ElixirEntity $entity
-     * @return bool
-     */
-    public function save(ElixirEntity $entity): bool
+    public function save(ArmorEntity $entity)
     {
-        $model = $entity->getId() ? Elixir::find($entity->getId()) : new Elixir();
+        $model = $entity->getId() ? Armor::find($entity->getId()) : new Armor();
 
-        $model->id = $entity->getId();
         $model->title = $entity->getTitle();
         $model->description = $entity->getDescription();
-        $model->action_direction = $entity->getActionDirection();
         $model->price = $entity->getPrice();
         $model->value = $entity->getValue();
-        $model->scale = $entity->getScale();
-        $model->target_param = $entity->getTargetParam();
+        $model->endurance = $entity->getEndurance();
+        $model->category_id = $entity->getCategoryId();
 
 
         if (!($entity->getImage() instanceof Attachment) && !is_null($entity->getImage())) {

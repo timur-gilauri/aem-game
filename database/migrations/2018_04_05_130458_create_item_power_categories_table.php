@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBagsTable extends Migration
+class CreateItemPowerCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateBagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bags', function (Blueprint $table) {
+        Schema::create('item_power_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('player_id');
-
-            /* Размер сумки. Определяет количество предметов, которые можно положить в сумку */
-            $table->integer('size')->default(10);
-
+            $table->string('level');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateBagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bags');
+        Schema::dropIfExists('item_power_categories');
     }
 }

@@ -31,7 +31,7 @@ class NationRepository
         $entity = new NationEntity();
 
         $entity->setId($model->id);
-        $entity->setName($model->name);
+        $entity->setTitle($model->title);
         $entity->setDescription($model->description);
 
         return $entity;
@@ -45,7 +45,7 @@ class NationRepository
     {
         $model = $entity->getId() ? Nation::find($entity->getId()) : new Nation();
 
-        $model->name = $entity->getName();
+        $model->title = $entity->getTitle();
         $model->description = $entity->getDescription();
 
         if ($model->save()) {

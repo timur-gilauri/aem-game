@@ -7,7 +7,6 @@ use App\Entities\Locations\CountryEntity;
 use App\Entities\User\PlayerEntity;
 use App\Repositories\Locations\CountryRepository;
 use App\Repositories\User\PlayerClassRepository;
-use App\Repositories\User\PlayerRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +15,6 @@ class PlayerController extends Controller
 {
     /** @var CountryRepository */
     protected $countryRepo;
-    /** @var PlayerRepository */
-    protected $playerRepo;
     /** @var PlayerClassRepository */
     protected $playerClassRepo;
 
@@ -25,9 +22,10 @@ class PlayerController extends Controller
     {
         $this->middleware('auth');
 
-        $this->playerRepo = app(PlayerRepository::class);
         $this->countryRepo = app(CountryRepository::class);
         $this->playerClassRepo = app(PlayerClassRepository::class);
+
+        parent::__construct();
     }
 
     public function index()
@@ -37,6 +35,17 @@ class PlayerController extends Controller
         $player = $this->playerRepo->findByUserId($user->id);
 
         return view('player.index', [
+            'player' => $player
+        ]);
+    }
+
+    public function bag(Request $request)
+    {
+        $user = Auth::user();
+        /** @var PlayerEntity $player */
+        $player = $this->playerRepo->findByUserId($user->id);
+
+        return view('player.bag', [
             'player' => $player
         ]);
     }

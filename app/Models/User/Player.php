@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function bag()
+    {
+        return $this->hasOne(Bag::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

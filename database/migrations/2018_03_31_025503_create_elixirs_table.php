@@ -18,14 +18,11 @@ class CreateElixirsTable extends Migration
             $table->string('title');
             $table->string('description');
 
-            $table->string('action_type');                     // Действие. Может быть up(уменьшает параметр), down(увеличивает)
-            $table->integer('price');                           // Цена
-
+            $table->string('action_direction');                 // Направление действия. Может быть up(увеличивает параметр), down(уменьшает)
             $table->integer('value');                           // Сила эликсира - в абсолютных единицах
             $table->string('scale');                            // Единица измерения действия. Может быть: "percent", "absolute"
-            $table->string('group');                            // Группа эликсира: лечение, урон
-            $table->string('for_param');                        // Параметр, на который действует эликсир
-            $table->string('size');                             // Размер эликсира - малый, средний, большой
+            $table->string('target_param');                        // Параметр, на который действует эликсир
+            $table->integer('price');                           // Цена
 
             /* изображение */
             $table->string('image_file_name')->nullable();

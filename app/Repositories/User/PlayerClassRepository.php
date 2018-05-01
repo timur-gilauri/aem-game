@@ -46,7 +46,7 @@ class PlayerClassRepository
         $entity = new PlayerClassEntity();
 
         $entity->setId($model->id);
-        $entity->setName($model->name);
+        $entity->setTitle($model->title);
         $entity->setDescription($model->description);
         $entity->setClassAction($model->class_action);
         $entity->setScale($model->scale);
@@ -74,7 +74,7 @@ class PlayerClassRepository
     {
         $model = $entity->getId() ? PlayerClass::find($entity->getId()) : new PlayerClass();
 
-        $model->name = $entity->getName();
+        $model->title = $entity->getTitle();
         $model->description = $entity->getDescription();
         $model->class_action = $entity->getClassAction();
         $model->scale = $entity->getScale();

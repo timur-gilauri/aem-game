@@ -18,10 +18,10 @@ class CreateArmorsTable extends Migration
             $table->string('title');
             $table->string('description');
 
-            $table->string('group');      // Группа брони: слабое. среднее, мощное и т.д.
-            $table->string('category');   // Категория оружия: легкая броня, тяжелая броня
-            $table->integer('defense');   // Урон оружия
-            $table->integer('endurance'); // Запас прочности
+            $table->integer('price');                   // Цена
+            $table->integer('value');                   // Урон оружия
+            $table->integer('endurance');               // Запас прочности
+            $table->string('category_id');              // Группа брони: слабое. среднее, мощное и т.д.
             /* изображение */
             $table->string('image_file_name')->nullable();
             $table->integer('image_file_size')->nullable();

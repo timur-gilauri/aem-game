@@ -29,6 +29,13 @@ Route::group([
     Route::post('/delete/{id}', "PlayerController@delete")->name('delete');
 });
 
+Route::group([
+    'prefix' => 'market',
+    'as'     => 'market::',
+], function () {
+    Route::get('/{type}/{operation}/{id}', 'MarketController@buyItem')->name('buy-item');
+});
+
 
 /* ADMINISTRATOR SECTION */
 

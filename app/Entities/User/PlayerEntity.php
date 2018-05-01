@@ -85,6 +85,8 @@ class PlayerEntity
     protected $nation;
     /** @var CityEntity */
     protected $city;
+    /** @var BagEntity */
+    protected $bag;
 
     /**
      * @return int|null
@@ -628,6 +630,22 @@ class PlayerEntity
     public function setCity(CityEntity $city): void
     {
         $this->city = $city;
+    }
+
+    /**
+     * @return BagEntity
+     */
+    public function getBag(): BagEntity
+    {
+        return $this->bag;
+    }
+
+    /**
+     * @param BagEntity $bag
+     */
+    public function setBag(BagEntity $bag): void
+    {
+        $this->bag = $bag;
     }
 
 

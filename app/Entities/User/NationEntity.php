@@ -14,7 +14,7 @@ class NationEntity
     /** @var int|null */
     protected $id;
     /** @var string */
-    protected $name;
+    protected $title;
     /** @var string */
     protected $description;
 
@@ -37,18 +37,19 @@ class NationEntity
     /**
      * @return string
      */
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * @param string $name
+     * @param string $title
      */
-    public function setName(string $name): void
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
+        $this->title = $title;
     }
+
 
     /**
      * @return string

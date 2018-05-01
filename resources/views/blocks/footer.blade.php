@@ -1,6 +1,8 @@
 <footer>
-    <a class="line_interact" href="{{route('player::bag')}}" title="Сумка">
-        <i class="fi-torsos-all icon"></i>Моя сумка</a>
+    @if(request()->route() && request()->route()->getName() != 'player::bag')
+        <a class="line_interact" href="{{route('player::bag')}}" title="Сумка">
+            <i class="fi-torsos-all icon"></i>Моя сумка</a>
+    @endif
     @if(request()->route() && request()->route()->getName() != 'player::player')
         <a class="line_interact" href="{{ route('player::player') }}"><i class="icon fi-torso-business"></i>Мой
             герой</a>

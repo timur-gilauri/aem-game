@@ -42,22 +42,34 @@ class LocationController extends Controller
             return redirect(route('home'), 301);
         }
 
-        return $this->{$slug}($player);
+        return $this->{$slug}($request, $player, $location);
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function healer(PlayerEntity $player)
+    public function healer(Request $request, PlayerEntity $player, LocationEntity $location)
     {
-        $title = 'Знаарь';
+        $title = $location->getTitle();
         $elixirs = $this->elixirRepo->all();
 
-        return view('locations.healer', [
+        return view('locations.' . $location->getSlug(), [
             'title'   => $title,
             'player'  => $player,
             'elixirs' => $elixirs,
+        ]);
+    }
+
+    public function square(Request $request, PlayerEntity $player, LocationEntity $location)
+    {
+        $title = $location->getTitle();
+        $locations = $location->getChildren();
+
+        return view(('locations.' . $location->getSlug()), [
+            'title'     => $title,
+            'player'    => $player,
+            'locations' => $locations
         ]);
     }
 

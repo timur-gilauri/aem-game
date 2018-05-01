@@ -72,8 +72,8 @@ class CountryRepository
         $entity->setTitle($model->title);
         $entity->setSlug($model->slug);
         $entity->setDescription($model->description);
-        $entity->setArms($model->arms);
-        $entity->setArmsShadow($model->arms_shadow);
+        $entity->setImage($model->image);
+        $entity->setImageShadowed($model->image_shadowed);
 
         $entity->setNation($this->nationRepo->toEntity($model->nation));
 
@@ -99,11 +99,11 @@ class CountryRepository
         }
 
         $model->description = $entity->getDescription();
-        if (!($entity->getArms() instanceof Attachment) && !is_null($entity->getArms())) {
-            $model->arms = $entity->getArms();
+        if (!($entity->getImage() instanceof Attachment) && !is_null($entity->getImage())) {
+            $model->arms = $entity->getImage();
         }
-        if (!($entity->getArmsShadow() instanceof Attachment) && !is_null($entity->getArmsShadow())) {
-            $model->arms_shadow = $entity->getArmsShadow();
+        if (!($entity->getImageShadowed() instanceof Attachment) && !is_null($entity->getImageShadowed())) {
+            $model->arms_shadow = $entity->getImageShadowed();
         }
 
         if ($model->save()) {

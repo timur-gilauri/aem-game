@@ -1,10 +1,9 @@
-@extends('layouts.base')
+@extends('layouts.player')
 
 @section('content')
-    @include('blocks.header')
     <div class="player-stats base-block-padding">
         <img class="player-stats__img"
-             src="{{asset('images/classes/army/'.$player->getCountry()->getTitle().'.jpg')}}">
+             src="{{asset('images/classes/army/'.$player->getCountry()->getSlug().'.jpg')}}">
         <div class="geography-stats">
             <div class="stat-line">
                 <div class="stat-line__name">Имя</div>
@@ -12,11 +11,11 @@
             </div>
             <div class="stat-line">
                 <div class="stat-line__name">Страна</div>
-                <div class="stat-line__value">{{$player->getCountry()->getName()}}</div>
+                <div class="stat-line__value">{{$player->getCountry()->getTitle()}}</div>
             </div>
             <div class="stat-line">
                 <div class="stat-line__name">Город</div>
-                <div class="stat-line__value">{{$player->getCity()->getName()}}</div>
+                <div class="stat-line__value">{{$player->getCity()->getTitle()}}</div>
             </div>
         </div>
     </div>

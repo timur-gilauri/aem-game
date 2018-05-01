@@ -6,4 +6,5 @@
             @include('blocks.elixir-item', ['elixir'=>$elixir, 'player'=>$player,'tradeAction' => 'buy'])
         @endforeach
     </div>
+    @include('blocks.locations')
 @endsection

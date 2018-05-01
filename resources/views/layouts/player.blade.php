@@ -18,7 +18,6 @@
 
     <header>
         @include('blocks.header')
-        <div class="header-image"></div>
     </header>
 
     <section>

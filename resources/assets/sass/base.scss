@@ -44,7 +44,7 @@ a:active {
 }
 
 .base-block-padding {
-  padding: 10px 15px;
+  padding: 5px 10px;
 }
 
 .button {
@@ -101,7 +101,7 @@ a:active {
   padding: 5px 10px;
   min-height: 15px;
   border-bottom: 1px solid $border-color;
-  border-top: none;
+  border-top: 1px solid $border-color;
   background-color: $base-line-color;
   color: $base-font-color;
   font-size: $line-font-size;
@@ -118,6 +118,9 @@ a:active {
     &:hover {
       cursor: not-allowed;
     }
+  }
+  &:not(:first-child) {
+    border-top: none;
   }
 }
 
@@ -229,12 +232,12 @@ a:active {
 
 .item__lst {
   margin: 0;
-  border-bottom: 1px solid $border-color;
+  //border-bottom: 1px solid $border-color;
   .item__lst__i {
     padding-bottom: $base-offset-size / 2;
     padding-top: $base-offset-size / 2;
     position: relative;
-    height: 250px;
+    height: auto;
     .item__lst__i__inner {
       position: relative;
       display: flex;
@@ -263,6 +266,7 @@ a:active {
       }
       .item-info {
         text-align: center;
+        margin: 10px auto;
       }
       .use-item {
         display: block;
@@ -270,4 +274,8 @@ a:active {
       }
     }
   }
+}
+
+.locations-lst {
+  margin-bottom: 20px;
 }
