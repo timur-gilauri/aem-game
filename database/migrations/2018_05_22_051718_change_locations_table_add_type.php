@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBagElixirTable extends Migration
+class ChangeLocationsTableAddType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateBagElixirTable extends Migration
      */
     public function up()
     {
-        Schema::create('bag_elixir', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('bag_id');
-            $table->integer('elixir_id');
-            $table->timestamps();
+        Schema::table('locations', function (Blueprint $table) {
+            $table->string('type')->after('available_at_level');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateBagElixirTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bag_elixir');
+        Schema::table('locations', function (Blueprint $table) {
+            $table->dropColumn('type');
+        });
     }
 }

@@ -40,9 +40,9 @@ class LocationRepository
      * @param string $slug
      * @return LocationEntity|null
      */
-    public function findBySlug(string $slug)
+    public function findBySlugAndCityId(string $slug, int $city_id)
     {
-        return ($model = Location::where('slug', $slug)->first()) ? $this->toEntity($model) : null;
+        return ($model = Location::where('slug', $slug)->where('city_id', $city_id)->first()) ? $this->toEntity($model) : null;
     }
 
     /**
@@ -69,6 +69,7 @@ class LocationRepository
         $entity->setSlug($model->slug);
         $entity->setParentLocationId($model->parent_location_id);
         $entity->setAvailableAtLevel($model->available_at_level);
+        $entity->setType($model->type);
         $entity->setImage($model->image);
 
         $entity->setChildren($model->children->map(function (Location $child) {
@@ -90,6 +91,7 @@ class LocationRepository
 
         $model->parent_location_id = $entity->getParentLocationId();
         $model->available_at_level = $entity->getAvailableAtLevel();
+        $model->type = $entity->getType();
 
         if (!($entity->getImage() instanceof Attachment) && !is_null($entity->getImage())) {
             $model->image = $entity->getImage();

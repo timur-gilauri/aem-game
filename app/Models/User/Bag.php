@@ -2,34 +2,22 @@
 
 namespace App\Models\User;
 
-use App\Models\Stuff\Armor;
-use App\Models\Stuff\Elixir;
-use App\Models\Stuff\Weapon;
+use App\Models\Stuff\BagItem;
 use Illuminate\Database\Eloquent\Model;
 
 class Bag extends Model
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function elixirs()
-    {
-        return $this->belongsToMany(Elixir::class, 'bag_elixir');
-    }
+
+    protected $fillable = [
+        'player_id',
+        'size'
+    ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function weapons()
+    public function items()
     {
-        return $this->belongsToMany(Weapon::class, 'bag_weapon');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function armors()
-    {
-        return $this->belongsToMany(Armor::class, 'armor_bag');
+        return $this->hasMany(BagItem::class, 'bag_id', 'id');
     }
 }

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\CurrentUser;
 use App\Entities\Stuff\ArmorEntity;
 use App\Entities\Stuff\ElixirEntity;
 use App\Entities\Stuff\WeaponEntity;
 use App\Entities\User\BagEntity;
-use App\Entities\User\PlayerEntity;
 use App\Repositories\Stuff\ArmorRepository;
 use App\Repositories\Stuff\ElixirRepository;
 use App\Repositories\Stuff\WeaponRepository;
 use App\Repositories\User\BagRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class MarketController extends Controller
 {
@@ -21,6 +20,9 @@ class MarketController extends Controller
 
     public function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('user');
+
         $this->bagRepo = app(BagRepository::class);
 
         parent::__construct();
@@ -29,8 +31,10 @@ class MarketController extends Controller
     public function buyItem(Request $request)
     {
         $type = $request->route('type');
-        /** @var PlayerEntity $player */
-        $player = $this->playerRepo->findByUserId(Auth::id());
+        /** @var CurrentUser $user */
+        $user = app(CurrentUser::class);
+
+        $player = $user->getPlayer();
         /** @var BagEntity $bag */
         $bag = $player->getBag();
         $repos = [
@@ -43,10 +47,9 @@ class MarketController extends Controller
 
         if (!$bag->full()) {
             $bag->addItem($type, $item);
+            $player->setMoney($player->getMoney() - $item->getPrice());
+
             try {
-
-                $player->setMoney($player->getMoney() - $item->getPrice());
-
                 $this->bagRepo->save($bag);
 
                 $this->playerRepo->save($player);

@@ -100,10 +100,10 @@ class CountryRepository
 
         $model->description = $entity->getDescription();
         if (!($entity->getImage() instanceof Attachment) && !is_null($entity->getImage())) {
-            $model->arms = $entity->getImage();
+            $model->image = $entity->getImage();
         }
         if (!($entity->getImageShadowed() instanceof Attachment) && !is_null($entity->getImageShadowed())) {
-            $model->arms_shadow = $entity->getImageShadowed();
+            $model->image_shadowed = $entity->getImageShadowed();
         }
 
         if ($model->save()) {

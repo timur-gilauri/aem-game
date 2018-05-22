@@ -25,6 +25,8 @@ class LocationEntity
     protected $title;
     /** @var int */
     protected $available_at_level;
+    /** @var string */
+    protected $type;
     /** @var Attachment|UploadedFile|null */
     protected $image;
     /** @var Collection */
@@ -110,6 +112,22 @@ class LocationEntity
     public function setAvailableAtLevel(int $available_at_level): void
     {
         $this->available_at_level = $available_at_level;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
     }
 
     /**

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="locations-lst">
-        @foreach($locations as $location)
+    <div class="locations-lst lines-wrapper">
+        @foreach($items as $location)
             @if($player->getId() >= $location->getAvailableAtLevel())
                 <a class="line_interact"
                    href="{{route('location', $location->getSlug())}}" title="{{$location->getTitle()}}"><i

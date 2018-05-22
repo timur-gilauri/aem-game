@@ -12,13 +12,13 @@ class Country extends Model implements StaplerableInterface
 {
     use StaplerTrait;
 
-    protected $fillable = ['arms', 'arms_shadow'];
+    protected $fillable = ['image', 'image_shadowed'];
 
     public function __construct(array $attributes = array())
     {
 
-        $this->attach('arms');
-        $this->attach('arms_shadow');
+        $this->attach('image');
+        $this->attach('image_shadowed');
 
         parent::__construct($attributes);
     }

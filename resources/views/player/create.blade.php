@@ -40,9 +40,9 @@
 
                     <img class="create-player__img mb-2"
                          src="{{$playerClass->getImage()->url()}}"
-                         alt="{{$playerClass->getName()}}">
+                         alt="{{$playerClass->getTitle()}}">
 
-                    {{$playerClass->getName()}}
+                    {{$playerClass->getTitle()}}
                 </label>
             @endforeach
         </div>
@@ -65,11 +65,11 @@
                            onchange="changeState()">
 
                     <img class="create-player__img mb-2"
-                         src="{{$country->getArms()->url()}}"
-                         data-src="{{$country->getArms()->url()}}"
-                         data-shadow-src="{{$country->getArmsShadow()->url()}}"
-                         alt="{{$country->getName()}}">
-                    {{$country->getName()}}
+                         src="{{$country->getImage()->url()}}"
+                         data-src="{{$country->getImage()->url()}}"
+                         data-shadow-src="{{$country->getImageShadowed()->url()}}"
+                         alt="{{$country->getTitle()}}">
+                    {{$country->getTitle()}}
 
                 </label>
             @endforeach

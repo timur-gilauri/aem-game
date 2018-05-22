@@ -1,4 +1,4 @@
-<footer>
+<footer class="lines-wrapper">
     @if(request()->route() && request()->route()->getName() != 'player::bag')
         <a class="line_interact" href="{{route('player::bag')}}" title="Сумка">
             <i class="fi-torsos-all icon"></i>Моя сумка</a>

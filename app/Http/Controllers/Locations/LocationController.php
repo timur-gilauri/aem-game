@@ -2,48 +2,107 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\CurrentUser;
 use App\Entities\Locations\LocationEntity;
 use App\Entities\User\PlayerEntity;
+use App\Models\Locations\Location;
 use App\Repositories\Locations\LocationRepository;
+use App\Repositories\Stuff\ArmorRepository;
 use App\Repositories\Stuff\ElixirRepository;
-use App\Repositories\User\PlayerRepository;
+use App\Repositories\Stuff\WeaponRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class LocationController extends Controller
 {
     /** @var LocationRepository */
     protected $repo;
+    /** @var array */
+    protected $repos;
     /** @var ElixirRepository */
     protected $elixirRepo;
-    /** @var PlayerRepository */
-    protected $playerRepo;
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->middleware('auth');
+        $this->middleware('user');
 
         $this->repo = app(LocationRepository::class);
-        $this->elixirRepo = app(ElixirRepository::class);
-        $this->playerRepo = app(PlayerRepository::class);
+
+        $this->repos = [
+            'healer'  => [
+                'repo'      => app(ElixirRepository::class),
+                'itemsType' => 'elixir'
+            ],
+            'armorer' => [
+                'repo'      => app(WeaponRepository::class),
+                'itemsType' => 'weapon'
+            ],
+            'smith'   => [
+                'repo'      => app(ArmorRepository::class),
+                'itemsType' => 'armor'
+            ],
+        ];
     }
 
     public function goToLocation(Request $request)
     {
-        $user = Auth::user();
-        $player = $this->playerRepo->findByUserId($user->id);
+        /** @var CurrentUser $user */
+        $user = app(CurrentUser::class);
 
-        $slug = $request->route('slug');
+        $player = $user->getPlayer();
+
+        $cityId = $user->getPlayer()->getCityId();
 
         /** @var LocationEntity $location */
-        $location = $this->repo->findBySlug($slug);
+        $location = $this->repo->findBySlugAndCityId($request->route('location'), $cityId);
 
-        if (!$location || !view()->exists('locations.' . $slug)) {
-            return redirect(route('home'), 301);
+        $title = $location->getTitle();
+
+        if ($location->getType() == Location::TYPES['market']) {
+            $items = $this->repos[$request->route('location')]['repo']->all();
+            $itemsType = $this->repos[$request->route('location')]['itemsType'];
+            $viewName = 'locations.market';
+        } else {
+            $items = $location->getChildren();
+            $viewName = 'locations.' . $location->getSlug();
+            $itemsType = 'location';
         }
 
-        return $this->{$slug}($request, $player, $location);
+        return view($viewName, [
+            'title'     => $title,
+            'player'    => $player,
+            'items'     => $items,
+            'itemsType' => $itemsType
+        ]);
     }
+
+    /*
+     * Площадь, где находятся такие локации, как лекарь и т.д.
+     */
+    public function square(Request $request, PlayerEntity $player, LocationEntity $location)
+    {
+        /** @var CurrentUser $user */
+        $user = app(CurrentUser::class);
+
+        $player = $user->getPlayer();
+
+        $cityId = $user->getPlayer()->getCityId();
+
+        $location = $this->repo->findBySlugAndCityId('square', $cityId);
+
+        $title = $location->getTitle();
+        $locations = $location->getChildren();
+
+
+        return view(('locations.' . $location->getSlug()), [
+            'title'     => $title,
+            'player'    => $player,
+            'locations' => $locations
+        ]);
+    }
+
 
     /**
      * @param Request $request
@@ -51,25 +110,28 @@ class LocationController extends Controller
      */
     public function healer(Request $request, PlayerEntity $player, LocationEntity $location)
     {
+        /** @var CurrentUser $user */
+        $user = app(CurrentUser::class);
+
+        $player = $user->getPlayer();
+
+        $cityId = $user->getPlayer()->getCityId();
+
+        /** @var LocationEntity $location */
+        $location = $this->repo->findBySlugAndCityId($request->route()->getName(), $cityId);
+
         $title = $location->getTitle();
-        $elixirs = $this->elixirRepo->all();
+
+        if ($location->getType() == Location::TYPES['market']) {
+            $items = $this->repos[$request->route()->getName()]->all();
+        } else {
+            $items = $location->getChildren();
+        }
 
         return view('locations.' . $location->getSlug(), [
-            'title'   => $title,
-            'player'  => $player,
-            'elixirs' => $elixirs,
-        ]);
-    }
-
-    public function square(Request $request, PlayerEntity $player, LocationEntity $location)
-    {
-        $title = $location->getTitle();
-        $locations = $location->getChildren();
-
-        return view(('locations.' . $location->getSlug()), [
-            'title'     => $title,
-            'player'    => $player,
-            'locations' => $locations
+            'title'  => $title,
+            'player' => $player,
+            'items'  => $items,
         ]);
     }
 

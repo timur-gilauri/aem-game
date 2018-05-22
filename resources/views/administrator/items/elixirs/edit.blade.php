@@ -25,20 +25,6 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label for="slug">Slug</label>
-                        <input type="text"
-                               class="form-control"
-                               id="slug"
-                               name="slug"
-                               placeholder="Название"
-                               required
-                               value="{{isset($item) ? $item->getSlug() : ''}}">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
                         <label for="description">Описание</label>
                         <textarea type="text"
                                   class="form-control"

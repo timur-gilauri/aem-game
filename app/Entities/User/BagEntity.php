@@ -9,22 +9,25 @@
 namespace App\Entities\User;
 
 
+use App\Entities\Stuff\BagItemEntity;
 use Illuminate\Support\Collection;
 
 class BagEntity
 {
     /** @var int */
-    protected $id;
+    private $id;
     /** @var int */
-    protected $player_id;
+    private $player_id;
     /** @var int */
-    protected $size;
+    private $size;
     /** @var Collection */
-    protected $elixir;
+    private $items;
     /** @var Collection */
-    protected $weapon;
+    private $elixir;
     /** @var Collection */
-    protected $armor;
+    private $weapon;
+    /** @var Collection */
+    private $armor;
 
     /**
      * @return int
@@ -77,49 +80,48 @@ class BagEntity
     /**
      * @return Collection
      */
-    public function getElixir(): Collection
+    public function getItems(): Collection
     {
-        return $this->elixir;
+        return $this->items;
     }
 
     /**
-     * @param Collection $elixir
+     * @param Collection $items
      */
-    public function setElixir(Collection $elixir): void
+    public function setItems(Collection $items): void
     {
-        $this->elixir = $elixir;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getWeapon(): Collection
-    {
-        return $this->weapon;
-    }
-
-    /**
-     * @param Collection $weapon
-     */
-    public function setWeapon(Collection $weapon): void
-    {
-        $this->weapon = $weapon;
+        $this->items = $items;
     }
 
     /**
      * @return Collection
      */
-    public function getArmor(): Collection
+    public function getElixirs(): Collection
     {
-        return $this->armor;
+        return $this->getItems()->filter(function (BagItemEntity $item) {
+            return $item->getItemType() == 'elixir';
+        });
+    }
+
+
+    /**
+     * @return Collection
+     */
+    public function getWeapons(): Collection
+    {
+        return $this->getItems()->filter(function (BagItemEntity $item) {
+            return $item->getItemType() == 'weapon';
+        });
     }
 
     /**
-     * @param Collection $armor
+     * @return Collection
      */
-    public function setArmor(Collection $armor): void
+    public function getArmors(): Collection
     {
-        $this->armor = $armor;
+        return $this->getItems()->filter(function (BagItemEntity $item) {
+            return $item->getItemType() == 'armor';
+        });
     }
 
     /**
@@ -127,7 +129,7 @@ class BagEntity
      */
     public function getItemsCount(): int
     {
-        return $this->getElixir()->count() + $this->getWeapon()->count() + $this->getArmor()->count();
+        return $this->getItems()->count();
     }
 
     /**
@@ -135,7 +137,7 @@ class BagEntity
      */
     public function empty(): bool
     {
-        return $this->getItemsCount() == 0;
+        return $this->getItems()->isEmpty();
 
     }
 
@@ -153,8 +155,21 @@ class BagEntity
      */
     public function addItem(string $itemType, $item): void
     {
-        if (!$this->full()) {
-            $this->{$itemType}->push($item);
+        /** @var BagItemEntity $bagItem */
+        $bagItem = $this->getItems()->filter(function (BagItemEntity $bagItemEntity) use ($item, $itemType) {
+            return ($bagItemEntity->getItemType() == $itemType) && ($bagItemEntity->getItemId() == $item->getId());
+        })->first();
+        if (!$bagItem) {
+            $bagItem = new BagItemEntity();
+
+            $bagItem->setBagId($this->getId());
+            $bagItem->setItemId($item->getId());
+            $bagItem->setItemType($itemType);
+            $bagItem->setAmount(1);
+
+            $this->items->push($bagItem);
+        } else {
+            $bagItem->setAmount($bagItem->getAmount() + 1);
         }
     }
 }

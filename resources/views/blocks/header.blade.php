@@ -1,11 +1,11 @@
 <div class="sticky-container">
-    <div class="line top-line">
+    <div class="player-stats__line line">
         @if(request()->route()->getName() == 'home')
-            <div class="player-info_name">{{$player->getName()}}</div>
+            <div class="player-stats__name">{{$player->getName()}}</div>
         @else
             <a href="{{route('home')}}" class="get-home">На главную</a>
         @endif
-        <div class="player_stats-inline" id="player-stats">
+        <div class="player-stats__block">
             @include('blocks.player-stats')
         </div>
     </div>

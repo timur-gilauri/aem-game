@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBagAccessoryTable extends Migration
+class CreateBagItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateBagAccessoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('bag_accessory', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('bag_items', function (Blueprint $table) {
             $table->integer('bag_id');
-            $table->integer('accessory_id');
+            $table->integer('item_id');
+            $table->string('item_type');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateBagAccessoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bag_accessory');
+        Schema::dropIfExists('bag_items');
     }
 }

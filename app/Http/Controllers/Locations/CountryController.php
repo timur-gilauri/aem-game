@@ -39,23 +39,23 @@ class CountryController extends Controller
         $id = $request->get('id', null);
 
         $this->validate($request, [
-            'name'        => 'required|string|max:255' . ($id ? '' : '|unique:countries'),
-            'title'       => 'required|string|max:255' . ($id ? '' : '|unique:countries'),
-            'description' => 'required|string|max:1000',
-            'arms'        => ($id ? '' : 'required'),
-            'arms_shadow' => ($id ? '' : 'required'),
+            'title'          => 'required|string|max:255' . ($id ? '' : '|unique:countries'),
+            'slug'           => 'required|string|max:255' . ($id ? '' : '|unique:countries'),
+            'description'    => 'required|string|max:1000',
+            'image'          => ($id ? '' : 'required'),
+            'image_shadowed' => ($id ? '' : 'required'),
         ]);
 
         $entity = $id ? $this->repo->find($id) : new CountryEntity();
 
-        $entity->setName($request->get('name'));
         $entity->setTitle($request->get('title'));
+        $entity->setSlug($request->get('slug'));
         $entity->setDescription($request->get('description'));
-        if ($request->hasFile('arms')) {
-            $entity->setArms($request->file('arms'));
+        if ($request->hasFile('image')) {
+            $entity->setImage($request->file('image'));
         }
-        if ($request->hasFile('arms_shadow')) {
-            $entity->setArmsShadow($request->file('arms_shadow'));
+        if ($request->hasFile('image_shadowed')) {
+            $entity->setImageShadowed($request->file('image_shadowed'));
         }
 
         try {
@@ -87,7 +87,7 @@ class CountryController extends Controller
     {
         $item = $this->repo->find($request->route('id'));
 
-        $title = $item->getName();
+        $title = $item->getTitle();
 
         return view('administrator.countries.edit', compact('item', 'title'));
     }

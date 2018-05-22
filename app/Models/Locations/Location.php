@@ -12,6 +12,11 @@ class Location extends Model implements StaplerableInterface
 
     protected $fillable = ['image'];
 
+    public const TYPES = [
+        'market'    => 'market',
+        'territory' => 'territory',
+    ];
+
     public function __construct(array $attributes = [])
     {
         $this->attach('image');

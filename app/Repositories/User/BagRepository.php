@@ -9,33 +9,21 @@
 namespace App\Repositories\User;
 
 
-use App\Entities\Stuff\ArmorEntity;
-use App\Entities\Stuff\ElixirEntity;
-use App\Entities\Stuff\WeaponEntity;
+use App\Entities\Stuff\BagItemEntity;
 use App\Entities\User\BagEntity;
-use App\Models\Stuff\Armor;
-use App\Models\Stuff\Elixir;
-use App\Models\Stuff\Weapon;
+use App\Models\Stuff\BagItem;
 use App\Models\User\Bag;
-use App\Repositories\Stuff\ArmorRepository;
-use App\Repositories\Stuff\ElixirRepository;
-use App\Repositories\Stuff\WeaponRepository;
+use App\Repositories\Stuff\BagItemRepository;
 use Illuminate\Support\Collection;
 
 class BagRepository
 {
-    /** @var ArmorRepository */
-    protected $armorRepo;
-    /** @var ElixirRepository */
-    protected $elixirRepo;
-    /** @var WeaponRepository */
-    protected $weaponRepo;
+    /** @var BagItemRepository */
+    protected $bagItemsRepo;
 
     public function __construct()
     {
-        $this->armorRepo = app(ArmorRepository::class);
-        $this->elixirRepo = app(ElixirRepository::class);
-        $this->weaponRepo = app(WeaponRepository::class);
+        $this->bagItemsRepo = app(BagItemRepository::class);
     }
 
     public function all(): Collection
@@ -78,14 +66,8 @@ class BagRepository
         $entity->setId($model->id);
         $entity->setPlayerId($model->player_id);
         $entity->setSize($model->size);
-        $entity->setElixir($model->elixirs->map(function (Elixir $item) {
-            return $this->elixirRepo->toEntity($item);
-        }));
-        $entity->setWeapon($model->weapons->map(function (Weapon $item) {
-            return $this->weaponRepo->toEntity($item);
-        }));
-        $entity->setArmor($model->armors->map(function (Armor $item) {
-            return $this->armorRepo->toEntity($item);
+        $entity->setItems($model->items->map(function (BagItem $item) {
+            return $this->bagItemsRepo->toEntity($item);
         }));
 
         return $entity;
@@ -97,16 +79,9 @@ class BagRepository
 
         $model->size = $entity->getSize();
 
-        $model->elixirs()->sync($entity->getElixir()->map(function (ElixirEntity $item) {
-            return $item->getId();
-        }));
-
-        $model->armors()->sync($entity->getArmor()->map(function (ArmorEntity $item) {
-            return $item->getId();
-        }));
-        $model->weapons()->sync($entity->getWeapon()->map(function (WeaponEntity $item) {
-            return $item->getId();
-        }));
+        $entity->getItems()->each(function (BagItemEntity $item) {
+            $this->bagItemsRepo->save($item);
+        });
 
         if ($model->save()) {
             if (!$entity->getId()) {

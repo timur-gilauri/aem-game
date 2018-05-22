@@ -22,6 +22,8 @@ class PlayerController extends Controller
     {
         $this->middleware('auth');
 
+        $this->middleware('user.bag');
+
         $this->countryRepo = app(CountryRepository::class);
         $this->playerClassRepo = app(PlayerClassRepository::class);
 
@@ -54,7 +56,7 @@ class PlayerController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->has('player')) {
+        if ($user->player) {
             return redirect(route('player::player'), 301);
         }
         /** @var Collection $countries */
@@ -115,6 +117,10 @@ class PlayerController extends Controller
         $entity->setLightArmor($this->getRandDefaultValue());
 
         $this->playerRepo->save($entity);
+
+        session()->flash('message', 'Персонаж успешно сохранен');
+
+        return redirect(route('player::player'), 301);
 
     }
 

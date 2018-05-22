@@ -2,23 +2,27 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User\Bag;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class UserBag
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
-     * @param  string|null $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(route('home'));
+        $user = Auth::user();
+
+        if (!$user->player->bag) {
+            Bag::create([
+                'player_id' => $user->player->id,
+            ]);
         }
 
         return $next($request);

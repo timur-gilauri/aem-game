@@ -15,9 +15,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
 
-Route::get('locations/{slug}', 'LocationController@goToLocation')->name('location');
-
-/*===== ПРОИЗВОДИТЕЛИ ======*/
+/*===== ИГРОК ======*/
 Route::group([
     'prefix' => '/player',
     'as'     => 'player::',
@@ -28,6 +26,20 @@ Route::group([
     Route::post('/save', "PlayerController@save")->name('save');
     Route::post('/delete/{id}', "PlayerController@delete")->name('delete');
 });
+
+/*===== Локации ======*/
+
+Route::get('/locations/{location}', 'LocationController@goToLocation')->name('location');
+/*Route::group([
+    'prefix'     => '/locations',
+    'middleware' => ['auth', 'user'],
+    'as'         => 'locations::',
+], function () {
+    Route::get('/square', 'LocationController@square')->name('square');
+    Route::get('/smith', 'LocationController@smith')->name('smith');
+    Route::get('/healer', 'LocationController@healer')->name('healer');
+    Route::get('/armorer', 'LocationController@armorer')->name('armorer');
+});*/
 
 Route::group([
     'prefix' => 'market',

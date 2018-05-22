@@ -38,6 +38,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+
+        parent::__construct();
     }
 
     /**
@@ -68,5 +70,10 @@ class RegisterController extends Controller
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    protected function redirectTo()
+    {
+        return route('player::create');
     }
 }

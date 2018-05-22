@@ -46,6 +46,10 @@ class HomeController extends Controller
     public function index()
     {
         $this->user = Auth::user();
+
+        if (!$this->user->player) {
+            return redirect(route('player::create'), 301);
+        }
         $this->player = $this->playerRepo->findByUserId($this->user->id);
 
         $city = $this->cityRepo->find($this->player->getCityId());
@@ -53,8 +57,8 @@ class HomeController extends Controller
         $locations = $city->getFirstLevelLocations();
 
         return view('home', [
-            'locations' => $locations,
-            'player'    => $this->player,
+            'items'  => $locations,
+            'player' => $this->player,
         ]);
     }
 }
